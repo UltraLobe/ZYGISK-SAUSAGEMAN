@@ -30,10 +30,6 @@ HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac) {
     return;
 }
 
-void (*SetResolution)(int width, int height, bool fullscreen);
-int (*get_systemWidth)(void *instance);
-int (*get_systemHeight)(void *instance);
-void *(*get_main)();
 
 void (*old_noRecoil) (void *instance) {
 void noRecoil (void *instance) {

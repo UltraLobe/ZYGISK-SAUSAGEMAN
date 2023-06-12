@@ -39,8 +39,8 @@ void (*old_noRecoil) (void *instance) {
 void noRecoil (void *instance) {
 if (instance! =NULL && NoRecoil) {
 }
-return old_noRecoil(instance) ;
 }
+return old_noRecoil(instance) ;
 }
 
 void SetupImGui() {
