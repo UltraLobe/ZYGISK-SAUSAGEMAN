@@ -64,14 +64,19 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplAndroid_NewFrame(g_GlWidth, g_GlHeight);
     ImGui::NewFrame();
+    DrawESP(ImGui::GetBackgroundDrawList());
 
     ImGui::Begin("MGR Team - Sausage Man");
     if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
-        if (ImGui::BeginTabItem("Weapon Menu")) {
-            ImGui::Checkbox("No Recoil", &NoRecoil);
+        if (ImGui::BeginTabItem("ESP Menu")) {
+            ImGui::Checkbox("ESP Line", &espLine);
         }
+        ImGui::EndTabItem();
+        if (ImGui::BeginTabItem("Weapon Menu")) {
+            ImGui::Checkbox("No Recoil", &noRecoil);
+        }
+        ImGui::EndTabItem();
     }
-    ImGui::EndTabItem();
     ImGui::EndTabBar();
     ImGui::End();
 
@@ -81,6 +86,7 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     return old_eglSwapBuffers(dpy, surface);
 }
+
 
 void hack_start(const char *_game_data_dir) {
     LOGI("hack start | %s", _game_data_dir);
