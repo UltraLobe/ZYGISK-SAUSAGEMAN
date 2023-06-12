@@ -77,20 +77,20 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
 
     ImGui::Begin("MGR Team - Sausage Man");
     if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
-         if (ImGui::BeginTabItem("Weapon Menu")) {
+        if (ImGui::BeginTabItem("Weapon Menu")) {
             ImGui::Checkbox("No Recoil", &NoRecoil);
         }
     }
     ImGui::EndTabItem();
     ImGui::EndTabBar();
     ImGui::End();
-    
+
     ImGui::EndFrame();
     ImGui::Render();
     glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     return old_eglSwapBuffers(dpy, surface);
-}
+}   
 
 void hack_start(const char *_game_data_dir) {
     LOGI("hack start | %s", _game_data_dir);
