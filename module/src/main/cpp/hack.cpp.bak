@@ -21,6 +21,7 @@ static int                  g_GlHeight, g_GlWidth;
 static bool                 g_IsSetup = false;
 static std::string          g_IniFileName = "";
 static utils::module_info   g_TargetModule{};
+static bool libloaded = false;
 
 bool NoRecoil;
 
@@ -75,6 +76,7 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
     }
 
     ImGuiIO &io = ImGui::GetIO();
+    if (libLoaded)
     SetResolution(get_systemWidth(get_main()), get_systemHeight(get_main()), true);
 
 
@@ -114,7 +116,7 @@ void hack_start(const char *_game_data_dir) {
     get_systemHeight = (int (*)(void *)) ((uintptr_t) g_TargetModule.start_address + 0x1964ab8);
     get_main = (void *(*)()) ((uintptr_t) g_TargetModule.start_address + 0x1965088);
 
-
+    libLoaded = true;
 }
 
 void hack_prepare(const char *_game_data_dir) {
