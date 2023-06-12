@@ -65,20 +65,7 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
     ImGui_ImplAndroid_NewFrame(g_GlWidth, g_GlHeight);
     ImGui::NewFrame();
 
-    ImGui::Begin("MGR Team - Sausage Man");
-    if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
-        if (ImGui::BeginTabItem("ESP Menu")) {
-            ImGui::Checkbox("ESP Line", &espLine);
-        }
-        ImGui::EndTabItem();
-        if (ImGui::BeginTabItem("Weapon Menu")) {
-            ImGui::Checkbox("No Recoil", &NoRecoil);
-        }
-        ImGui::EndTabItem();
-    }
-    ImGui::EndTabBar();
-    ImGui::End();
-
+    ImGui::ShowDemoWindow();
 
     ImGui::EndFrame();
     ImGui::Render();
