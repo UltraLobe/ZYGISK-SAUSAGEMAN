@@ -33,7 +33,7 @@ HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac) {
 
 void (*old_noRecoil) (void *instance) ;
 void noRecoil (void *instance) {
-if (instance! =NULL) {
+if (instance!=NULL) {
 if (NoRecoil) {
 }
 }
