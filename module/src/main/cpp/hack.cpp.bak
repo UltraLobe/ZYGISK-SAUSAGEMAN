@@ -104,7 +104,7 @@ void hack_start(const char *_game_data_dir) {
     LOGI("%s: %p - %p",TargetLibName, g_TargetModule.start_address, g_TargetModule.end_address);
 
     // TODO: hooking/patching here
-    DobbyHook((void *) ((uintptr_t) g_TargetModule.start_address + 0x1cae0fc), (void *) new_noRecoil, (void **) &old_noRecoil);
+    DobbyHook((void *) ((uintptr_t) g_TargetModule.start_address + 0x1cae0fc), (void *) noRecoil, (void **) &old_noRecoil);
 }
 
 void hack_prepare(const char *_game_data_dir) {
