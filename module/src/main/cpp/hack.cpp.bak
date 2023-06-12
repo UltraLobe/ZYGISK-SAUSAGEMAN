@@ -21,7 +21,7 @@ static int                  g_GlHeight, g_GlWidth;
 static bool                 g_IsSetup = false;
 static std::string          g_IniFileName = "";
 static utils::module_info   g_TargetModule{};
-static bool libloaded = false;
+static bool libLoaded = false;
 
 bool NoRecoil;
 
