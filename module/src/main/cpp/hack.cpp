@@ -22,8 +22,6 @@ static bool                 g_IsSetup = false;
 static std::string          g_IniFileName = "";
 static utils::module_info   g_TargetModule{};
 
-bool NoRecoil;
-
 HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac) {
     origInput(thiz, ex_ab, ex_ac);
     ImGui_ImplAndroid_HandleInputEvent((AInputEvent *)thiz);
@@ -65,15 +63,8 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
     ImGui_ImplAndroid_NewFrame(g_GlWidth, g_GlHeight);
     ImGui::NewFrame();
 
-    ImGui::Begin("MGR Team - Sausage Man");
-    if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
-        if (ImGui::BeginTabItem("Weapon Menu")) {
-            ImGui::Checkbox("No Recoil", &NoRecoil);
-        }
-    }
-    ImGui::EndTabItem();
-    ImGui::EndTabBar();
-    ImGui::End();
+    ImGui::ShowDemoWindow();
+
 
     ImGui::EndFrame();
     ImGui::Render();
