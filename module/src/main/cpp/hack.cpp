@@ -30,6 +30,19 @@ HOOKAF(void, Input, void *thiz, void *ex_ab, void *ex_ac) {
     return;
 }
 
+void (*SetResolution)(int width, int height, bool fullscreen);
+int (*get_systemWidth)(void *instance);
+int (*get_systemHeight)(void *instance);
+void *(*get_main)();
+
+void (*old_noRecoil) (void *instance) {
+void noRecoil (void *instance) {
+if (instance! =NULL && NoRecoil) {
+}
+return old_noRecoil(instance) ;
+}
+}
+
 void SetupImGui() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -91,7 +104,7 @@ void hack_start(const char *_game_data_dir) {
     LOGI("%s: %p - %p",TargetLibName, g_TargetModule.start_address, g_TargetModule.end_address);
 
     // TODO: hooking/patching here
-    
+    DobbyHook((void *) ((uintptr_t) g_TargetModule.start_address + 0x1cae0fc), (void *) noRecoil, (void **) &old_noRecoil);
 }
 
 void hack_prepare(const char *_game_data_dir) {
