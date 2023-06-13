@@ -78,6 +78,8 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
 
     ImGuiIO &io = ImGui::GetIO();
     if (libLoaded)
+    
+    
     SetResolution(get_systemWidth(get_main()), get_systemHeight(get_main()), true);
 
 
@@ -111,11 +113,12 @@ void hack_start(const char *_game_data_dir) {
     LOGI("%s: %p - %p",TargetLibName, g_TargetModule.start_address, g_TargetModule.end_address);
 
     // TODO: hooking/patching here
-    DobbyHook((void *) ((uintptr_t) g_TargetModule.start_address + 0x1cae0fc), (void *) noRecoil, (void **) &old_noRecoil);
-    SetResolution = (void (*)(int, int, bool)) ((uintptr_t) g_TargetModule.start_address + 0x3e9a2b8);
-    get_systemWidth = (int (*)(void *)) ((uintptr_t) g_TargetModule.start_address + 0x1964984);
-    get_systemHeight = (int (*)(void *)) ((uintptr_t) g_TargetModule.start_address + 0x1964ab8);
-    get_main = (void *(*)()) ((uintptr_t) g_TargetModule.start_address + 0x1965088);
+    DobbyHook((void *) ((uintptr_t) g_TargetModule.start_address + 0x1cae0fc), (void *) noRecoil, (void **) &old_noRecoil);//class role, method: Boolean IgnoreRecoil() { }
+    
+    SetResolution = (void (*)(int, int, bool)) ((uintptr_t) g_TargetModule.start_address + 0x3e9a2b8); //class Screen, method: public static Void SetResolution(Int32 width, Int32 height, Boolean fullscreen) { }
+    get_systemWidth = (int (*)(void *)) ((uintptr_t) g_TargetModule.start_address + 0x1964984);//class Display, method: public Int32 get_systemWidth() { }
+    get_systemHeight = (int (*)(void *)) ((uintptr_t) g_TargetModule.start_address + 0x1964ab8);//class Display, method: public Int32 get_systemHeight() { }
+    get_main = (void *(*)()) ((uintptr_t) g_TargetModule.start_address + 0x1965088);//class Display, method: public static Display get_main() { }
 
     libLoaded = true;
 }
